@@ -13,7 +13,12 @@ class Information(commands.Cog):
         self.bot = bot
         self.config = default.config()
         self.process = psutil.Process(os.getpid())
-
+    
+    @commands.command()
+    async def hello(self, ctx):
+        greeting = await ctx.send(f"Hello: " + ctx.author.name + " my name is Test Bot!")
+        greeting = await ctx.send(f"How are you today?")
+        
     @commands.command()
     async def ping(self, ctx):
         """ Pong! """
