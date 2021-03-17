@@ -10,7 +10,6 @@ from io import BytesIO
 from discord.ext import commands
 from utils import lists, permissions, http, default, argparser
 
-# just putting this here to test something
 class Fun_Commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -293,16 +292,21 @@ class Fun_Commands(commands.Cog):
         else:
             await ctx.send(f"{slotmachine} No match, you lost 😢")
 
-@commands.command(aliases=['jokes'])
-async def jokes(self, ctx): # this is a work in progress
-    joke1 = "Why do we tell actors to break a leg? Because every play has a cast."
-    joke2 = "Did you hear about the claustrophobic astronaut? He just needed a little space."
-    joke3 = "Why don't scientists trust atoms? Because they make up everything."
-    joke4 = "What does a nosy pepper do? Gets jalapeno business!"
-    joke5 = "What did the left eye say to the right eye? Between you and me, something smells." 
-    allJokes = [joke1, joke2, joke3, joke4, joke5]
-    await ctx.send(random.choice(allJokes))
-    # await ctx.send(f"**{ctx.author.name}** flipped a coin and got **{random.choice(coinsides)}**!")
+    @commands.command(aliases=['joke'])
+    async def jokes(self, ctx):
+        joke1 = "Why do we tell actors to break a leg? \nBecause every play has a cast."
+        joke2 = "Did you hear about the claustrophobic astronaut? \nHe just needed a little space."
+        joke3 = "Why don't scientists trust atoms? \nBecause they make up everything."
+        joke4 = "What does a nosy pepper do? \nGets jalapeno business!"
+        joke5 = " What is a computer’s favorite snack? \nComputer chips." 
+        joke6 = "What time is it when the clock strikes 13? \nTime to get a new clock."
+        joke7 = "Two pickles fell out of a jar onto the floor. What did one say to the other? \n Dill with it."
+        joke7 = "What do you think of that new diner on the moon? \nFood was good, but there really wasn’t much atmosphere."
+        joke8 = "What musical instrument is found in the bathroom? \nA tuba toothpaste."
+        joke9 = "What’s worse than finding a worm in your apple? \nFinding half a worm."
+        joke10 = " What kind of tree fits in your hand? \nA palm tree."
+        allJokes = [joke1, joke2, joke3, joke4, joke5, joke6, joke7, joke8, joke9, joke10]
+        await ctx.send(random.choice(allJokes))
 
 def setup(bot):
     bot.add_cog(Fun_Commands(bot))
