@@ -293,6 +293,16 @@ class Fun_Commands(commands.Cog):
         else:
             await ctx.send(f"{slotmachine} No match, you lost 😢")
 
+@commands.command(aliases=['jokes'])
+async def jokes(self, ctx): # this is a work in progress
+    joke1 = "Why do we tell actors to break a leg? Because every play has a cast."
+    joke2 = "Did you hear about the claustrophobic astronaut? He just needed a little space."
+    joke3 = "Why don't scientists trust atoms? Because they make up everything."
+    joke4 = "What does a nosy pepper do? Gets jalapeno business!"
+    joke5 = "What did the left eye say to the right eye? Between you and me, something smells." 
+    allJokes = [joke1, joke2, joke3, joke4, joke5]
+    await ctx.send(random.choice(allJokes))
+    # await ctx.send(f"**{ctx.author.name}** flipped a coin and got **{random.choice(coinsides)}**!")
 
 def setup(bot):
     bot.add_cog(Fun_Commands(bot))
