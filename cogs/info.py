@@ -16,6 +16,10 @@ class Information(commands.Cog):
         self.process = psutil.Process(os.getpid())
     
     @commands.command()
+    async def trivia (self, ctx):
+        await ctx.send("Trivia!")
+ 
+    @commands.command()
     async def hello(self, ctx):
 
         """ These lines send the greeting """
