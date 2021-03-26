@@ -17,6 +17,10 @@ class Information(commands.Cog):
 
     ## Proof of concept for use with @story{9}
     @commands.command()
+    async def trivia (self, ctx):
+        await ctx.send("Trivia!")
+ 
+    @commands.command()
     async def hello(self, ctx):
         """Greet the user and ask them how their day is."""
         # These lines send the greeting
