@@ -10,7 +10,6 @@ from io import BytesIO
 from discord.ext import commands
 from utils import lists, permissions, http, default, argparser
 
-
 class Fun_Commands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -158,8 +157,7 @@ class Fun_Commands(commands.Cog):
             embed.add_field(name="HEX", value=r['hex'], inline=True)
             embed.add_field(name="RGB", value=r['rgb'], inline=True)
             embed.add_field(name="Int", value=r['int'], inline=True)
-            embed.add_field(name="Brightness",
-                            value=r['brightness'], inline=True)
+            embed.add_field(name="Brightness", value=r['brightness'], inline=True)
 
             await ctx.send(embed=embed, content=f"{ctx.invoked_with.title()} name: **{r['name']}**")
 
@@ -179,8 +177,7 @@ class Fun_Commands(commands.Cog):
             if not len(url['list']):
                 return await ctx.send("Couldn't find your search in the dictionary...")
 
-            result = sorted(url['list'], reverse=True,
-                            key=lambda g: int(g["thumbs_up"]))[0]
+            result = sorted(url['list'], reverse=True, key=lambda g: int(g["thumbs_up"]))[0]
 
             definition = result['definition']
             if len(definition) >= 1000:
@@ -228,8 +225,7 @@ class Fun_Commands(commands.Cog):
             return await ctx.send(f"I would love to give beer to the bot **{ctx.author.name}**, but I don't think it will respond to you :/")
 
         beer_offer = f"**{user.name}**, you got a 🍺 offer from **{ctx.author.name}**"
-        beer_offer = beer_offer + \
-            f"\n\n**Reason:** {reason}" if reason else beer_offer
+        beer_offer = beer_offer + f"\n\n**Reason:** {reason}" if reason else beer_offer
         msg = await ctx.send(beer_offer)
 
         def reaction_check(m):
@@ -247,8 +243,7 @@ class Fun_Commands(commands.Cog):
         except discord.Forbidden:
             # Yeah so, bot doesn't have reaction permission, drop the "offer" word
             beer_offer = f"**{user.name}**, you got a 🍺 from **{ctx.author.name}**"
-            beer_offer = beer_offer + \
-                f"\n\n**Reason:** {reason}" if reason else beer_offer
+            beer_offer = beer_offer + f"\n\n**Reason:** {reason}" if reason else beer_offer
             await msg.edit(content=beer_offer)
 
     @commands.command(aliases=['howhot', 'hot'])
@@ -299,12 +294,13 @@ class Fun_Commands(commands.Cog):
 
     @commands.command(aliases=['joke'])
     async def jokes(self, ctx):
+
         allJokes = [
             "Why do we tell actors to break a leg? \nBecause every play has a cast.",
             "Did you hear about the claustrophobic astronaut? \nHe just needed a little space.",
             "Why don't scientists trust atoms? \nBecause they make up everything.",
             "What does a nosy pepper do? \nGets jalapeno business!",
-            "What is a computer’s favorite snack? \nComputer chips.",
+            "What is a computer’s favorite snack? \nComputer chips." ,
             "What time is it when the clock strikes 13? \nTime to get a new clock.",
             "Two pickles fell out of a jar onto the floor. What did one say to the other? \nDill with it.",
             "What do you think of that new diner on the moon? \nFood was good, but there really wasn’t much atmosphere.",
@@ -312,9 +308,8 @@ class Fun_Commands(commands.Cog):
             "What’s worse than finding a worm in your apple? \nFinding half a worm.",
             "What kind of tree fits in your hand? \nA palm tree."
 
-        ]
+            ]
         await ctx.send(random.choice(allJokes))
-
 
 def setup(bot):
     bot.add_cog(Fun_Commands(bot))
