@@ -16,8 +16,15 @@ class Information(commands.Cog):
         self.process = psutil.Process(os.getpid())
     
     @commands.command()
-    async def trivia (self, ctx, arg):
-        await ctx.send("Trivia!")
+    async def trivia (self, ctx, arg = ""):
+        if (arg.lower() == "start"):
+            self.bot.trivia.inProgress = True
+        elif (arg.lower() == "end"):
+            self.bot.trivia.inProgress = False
+        elif (arg == ""):
+            await ctx.send("Print trivia status")
+        else:
+            await ctx.send("arg: " + arg)
  
     @commands.command()
     async def hello(self, ctx):
