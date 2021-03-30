@@ -17,7 +17,7 @@ class Information(commands.Cog):
 
     ## Proof of concept for use with @story{9}
     @commands.command()
-    async def trivia (self, ctx):
+    async def trivia (self, ctx, arg):
         await ctx.send("Trivia!")
  
     @commands.command()
