@@ -18,13 +18,28 @@ class Information(commands.Cog):
     ## Proof of concept for use with @story{9}
     @commands.command()
     async def trivia (self, ctx, arg = ""):
-        if (arg.lower() == "start"):
-            self.bot.trivia.inProgress = True
-        elif (arg.lower() == "end"):
-            self.bot.trivia.inProgress = False
-        elif (arg == ""):
+        if (arg.lower() == "begin" or arg.lower() == "start"):
+            if (self.bot.trivia.inProgress):
+                await ctx.send("Trivia is already in progress")
+            else:
+                await ctx.send("Starting trivia...")
+                # Add initiate trivia operation here
+                self.bot.trivia.inProgress = True
+
+        elif (arg.lower() == "end" or arg.lower() == "stop"):
+            if (self.bot.trivia.inProgress):
+                await ctx.send("Stopping trivia...")
+                # Add stop trivia operations here
+                self.bot.trivia.inProgress = False
+            else:
+                await ctx.send("Trivia is not in progress")
+
+        elif (arg.lower() == "status" or arg == ""):
+            # Print current status of trivia here
             await ctx.send("Print trivia status")
+
         else:
+            # Handle answer checking and bad arguments here
             await ctx.send("arg: " + arg)
  
     @commands.command()
