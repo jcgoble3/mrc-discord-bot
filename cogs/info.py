@@ -16,7 +16,7 @@ class Information(commands.Cog):
         self.process = psutil.Process(os.getpid())
     
     @commands.command()
-    async def trivia (self, ctx):
+    async def trivia (self, ctx, arg):
         await ctx.send("Trivia!")
  
     @commands.command()
