@@ -1,13 +1,16 @@
 import discord
 
+from utils.trivia import QuestionAnswer, QuestionList, Trivia
 from utils import permissions
 from discord.ext.commands import AutoShardedBot, DefaultHelpCommand
 
-
 class Bot(AutoShardedBot):
+    trivia: Trivia
+
     def __init__(self, *args, prefix=None, **kwargs):
         super().__init__(*args, **kwargs)
         self.prefix = prefix
+        self.trivia = Trivia()
 
     async def on_message(self, msg):
         if not self.is_ready() or msg.author.bot or not permissions.can_handle(msg, "send_messages"):
