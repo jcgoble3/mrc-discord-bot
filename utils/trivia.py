@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 import random
+import enum
 
 from typing import Iterable, List
 
@@ -12,6 +13,10 @@ class QuestionAnswer:
     """Hold a single trivia question with its answer."""
     question: str
     answer: str
+
+    def __init__(self, question, answer):
+        self.question = question
+        self.answer = answer
 
 
 ## @story{9} In order to do trivia, the bot must be able to have multiple
@@ -57,3 +62,19 @@ class QuestionList:
     #  messages
     def __len__(self) -> int:
         return self.count
+
+
+# Trivia game object
+# The purpose of this object is to hold trivia game data and
+# maintain game state.
+class Trivia:
+
+    # Object for holding the list of questions
+    qlist: QuestionList
+
+    inProgress: bool
+
+    def __init__(self):
+        self.qlist = QuestionList([QuestionAnswer("Question 1", "Answer 1")])
+        self.inProgress = False
+

@@ -1,4 +1,4 @@
-from utils.trivia_data import QuestionAnswer, QuestionList
+from utils.trivia import QuestionAnswer, QuestionList
 
 def test_QuestionAnswer():
     obj = QuestionAnswer("test question", "test answer")
