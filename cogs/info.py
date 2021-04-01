@@ -34,10 +34,10 @@ class Information(commands.Cog):
             return channel_result and author_result
 
         try:
-            """ This line waits for a response from the user. The wait period times out
-                after 10 seconds. When a timeout occurs, an asyncio.TimeoutError execption
-                is thrown. This execption is caught on the next line and a response is sent
-                to the channel, informing the user by name, that they took to long to respond. """
+            # This line waits for a response from the user. The wait period times out
+            # after 10 seconds. When a timeout occurs, an asyncio.TimeoutError execption
+            # is thrown. This execption is caught on the next line and a response is sent
+            # to the channel, informing the user by name, that they took to long to respond.
             msg = await self.bot.wait_for('message', timeout=10.0, check=check)
         except asyncio.TimeoutError:
             await ctx.send("Sorry " + ctx.author.name + " you took too long to respond")
