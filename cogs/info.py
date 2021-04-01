@@ -28,7 +28,7 @@ class Information(commands.Cog):
             # check that the channel is the same between the message and the context
             channel_result = msg.channel == ctx.channel
 
-            """ check that the author is the same between the message and the context """
+            # check that the author is the same between the message and the context
             author_result = msg.author == ctx.author
             
             return channel_result and author_result
