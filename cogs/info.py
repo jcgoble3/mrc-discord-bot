@@ -17,8 +17,8 @@ class Information(commands.Cog):
     
     @commands.command()
     async def hello(self, ctx):
-
-        """ These lines send the greeting """
+        """Greet the user and ask them how their day is."""
+        # These lines send the greeting
         await ctx.send(f"Hello: " + ctx.author.name + " my name is Test Bot!")
         await ctx.send(f"How are you today?")
 
