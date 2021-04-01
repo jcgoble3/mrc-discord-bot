@@ -22,8 +22,8 @@ class Information(commands.Cog):
         await ctx.send(f"Hello: " + ctx.author.name + " my name is Test Bot!")
         await ctx.send(f"How are you today?")
 
-        """ The purpose of the check function is to filter out messages so that only the
-            message the wait_for function is looking for is returned """
+        # The purpose of the check function is to filter out messages so that only the
+        # message the wait_for function is looking for is returned
         def check(msg):
             """ check that the channel is the same between the message and the context """
             channel_result = msg.channel == ctx.channel
