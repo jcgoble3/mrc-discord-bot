@@ -42,7 +42,7 @@ class Information(commands.Cog):
         except asyncio.TimeoutError:
             await ctx.send("Sorry " + ctx.author.name + " you took too long to respond")
         else:
-            """ These lines customize the bot's response based on user input. """
+            # These lines customize the bot's response based on user input.
             if msg.content.lower() == "bad":
                 await ctx.send("That's bad!")
             elif msg.content.lower() == "good":
