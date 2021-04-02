@@ -2,6 +2,7 @@ import time
 import discord
 import psutil
 import os
+import asyncio
 
 from datetime import datetime
 from discord.ext import commands
@@ -13,7 +14,44 @@ class Information(commands.Cog):
         self.bot = bot
         self.config = default.config()
         self.process = psutil.Process(os.getpid())
+    
+    @commands.command()
+    async def hello(self, ctx):
+        """Greet the user and ask them how their day is."""
+        # These lines send the greeting
+        await ctx.send(f"Hello: " + ctx.author.name + " my name is Test Bot!")
+        await ctx.send(f"How are you today?")
 
+        # The purpose of the check function is to filter out messages so that only the
+        # message the wait_for function is looking for is returned
+        def check(msg):
+            # check that the channel is the same between the message and the context
+            channel_result = msg.channel == ctx.channel
+
+            # check that the author is the same between the message and the context
+            author_result = msg.author == ctx.author
+            
+            return channel_result and author_result
+
+        try:
+            # This line waits for a response from the user. The wait period times out
+            # after 10 seconds. When a timeout occurs, an asyncio.TimeoutError execption
+            # is thrown. This execption is caught on the next line and a response is sent
+            # to the channel, informing the user by name, that they took to long to respond.
+            msg = await self.bot.wait_for('message', timeout=10.0, check=check)
+        except asyncio.TimeoutError:
+            await ctx.send("Sorry " + ctx.author.name + " you took too long to respond")
+        else:
+            # These lines customize the bot's response based on user input.
+            if msg.content.lower() == "bad":
+                await ctx.send("That's bad!")
+            elif msg.content.lower() == "good":
+                await ctx.send("That's good!")
+            elif msg.content.lower() == "great":
+                await ctx.send("That's great!")
+            else:
+                await ctx.send("I'm sorry, I don't understand your response")
+        
     @commands.command()
     async def ping(self, ctx):
         """ Pong! """
