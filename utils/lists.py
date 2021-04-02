@@ -6,7 +6,26 @@ ballresponse = [
     "You'll be the judge", 'no... (╯°□°）╯︵ ┻━┻', 'no... baka',
     'senpai, pls no ;-;'
 ]
+i = 0
+answers = []
+questions = []
 
+with open ("/Users/sethsarchet/Desktop/QuestionList.txt") as fp:
+    count = 0
+    a_count = 0
+    q_count = 0
+    
+    for line in fp:
+        count +=1
+        if count % 2 == 0: # answer
+            answers.append(line)
+            print(answers[a_count])
+            a_count+=1
+        else: # question
+            questions.append(line)
+            print(questions[q_count])
+            q_count+=1
+            
 _all_questions = [
     QuestionAnswer("What is the capital city of Spain?", "Madrid"),
     QuestionAnswer("What is arachnophobia the fear of?", "Spiders"),
