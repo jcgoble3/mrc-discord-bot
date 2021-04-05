@@ -30,7 +30,12 @@ _all_questions = [
     QuestionAnswer("Which U.S. State is known as the Sunflower State?", "Kansas"),
     QuestionAnswer("Who founded Microsoft?", "Bill Gates"),
     QuestionAnswer("What plant is known to help heal a sunburn?", "Aloe"),
-    QuestionAnswer("How many planets are in our solar system? (Including Pluto!)", "9"),  
+    QuestionAnswer("How many planets are in our solar system? (Including Pluto!)", "9"),
+    QuestionAnswer("What's the hardest rock", "Diamond"),
+    QuestionAnswer("What is superman's real name?", "Clark Kent"),
+    QuestionAnswer("Who is the founder of the world wide web?", "Tim Berners-Lee"),
+    QuestionAnswer("What boxer is also referred as the people's champ?", "Muhammad Ali"),
+    QuestionAnswer("What is the periodic symbol for potassium?", "K"),
 ]
 
 trivia_questions = QuestionList(_all_questions)
