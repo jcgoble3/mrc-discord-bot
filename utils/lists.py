@@ -10,6 +10,7 @@ i = 0
 answers = []
 questions = []
 
+
 with open ("trivia_questions_answers.txt") as fp:
     count = 0
     a_count = 0
@@ -29,5 +30,4 @@ _all_questions = []
 for i in range(q_count):
      _all_questions.append(QuestionAnswer(questions[i], answers[i]))
         
-
 trivia_questions = QuestionList(_all_questions)
