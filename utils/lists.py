@@ -7,6 +7,7 @@ ballresponse = [
     'senpai, pls no ;-;'
 ]
 
+## @story{9} The bot needs a list of questions to choose from.
 _all_questions = [
     QuestionAnswer("What is the capital city of Spain?", "Madrid"),
     QuestionAnswer("What is arachnophobia the fear of?", "Spiders"),
@@ -38,4 +39,6 @@ _all_questions = [
     QuestionAnswer("What is the periodic symbol for potassium?", "K"),
 ]
 
+## @story{9} The list of questions needs to be packed into the designed
+#  data structure.
 trivia_questions = QuestionList(_all_questions)

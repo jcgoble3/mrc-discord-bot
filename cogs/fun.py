@@ -292,23 +292,24 @@ class Fun_Commands(commands.Cog):
         else:
             await ctx.send(f"{slotmachine} No match, you lost 😢")
 
+    ## @story{10}
     @commands.command(aliases=['joke'])
     async def jokes(self, ctx):
+        """Tell a random joke."""
 
         allJokes = [
             "Why do we tell actors to break a leg? \nBecause every play has a cast.",
             "Did you hear about the claustrophobic astronaut? \nHe just needed a little space.",
             "Why don't scientists trust atoms? \nBecause they make up everything.",
             "What does a nosy pepper do? \nGets jalapeno business!",
-            "What is a computer’s favorite snack? \nComputer chips." ,
+            "What is a computer’s favorite snack? \nComputer chips.",
             "What time is it when the clock strikes 13? \nTime to get a new clock.",
             "Two pickles fell out of a jar onto the floor. What did one say to the other? \nDill with it.",
             "What do you think of that new diner on the moon? \nFood was good, but there really wasn’t much atmosphere.",
             "What musical instrument is found in the bathroom? \nA tuba toothpaste.",
             "What’s worse than finding a worm in your apple? \nFinding half a worm.",
             "What kind of tree fits in your hand? \nA palm tree."
-
-            ]
+        ]
         await ctx.send(random.choice(allJokes))
 
 def setup(bot):
