@@ -21,29 +21,29 @@ class Information(commands.Cog):
 
         # *** BEGIN ***
         if (arg1.lower() == "begin" or arg1.lower() == "start"):
-            if (ctx.bot.trivia.inProgress):
+            if (self.bot.trivia.inProgress):
                 await ctx.send("Trivia is already in progress")
             else:
                 await ctx.send("Starting trivia...")
-                if (ctx.bot.trivia().start() == 0):
-                    ctx.bot.trivia.inProgress = True
+                if (self.bot.trivia.start() == 0):
+                    self.bot.trivia.inProgress = True
 
         # *** END ***
         elif (arg1.lower() == "end" or arg1.lower() == "stop"):
             if (self.bot.trivia.inProgress):
                 await ctx.send("Stopping trivia...")
-                if (self.bot.trivia().end() == 0):
+                if (self.bot.trivia.end() == 0):
                     self.bot.trivia.inProgress = False
             else:
                 await ctx.send("Trivia is not in progress")
 
         # *** STATUS ***
         elif (arg1.lower() == "status"):
-            await ctx.send(self.bot.trivia().status())
+            await ctx.send(self.bot.trivia.status())
         
         # *** ANSWER ***
         elif (arg1.lower() == "answer"):
-            if (self.bot.trivia().check(arg2) == 0):
+            if (self.bot.trivia.check(arg2) == 0):
                 await ctx.send("Correct")
             else:
                 await ctx.send("Not Correct")
