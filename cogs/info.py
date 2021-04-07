@@ -14,7 +14,8 @@ class Information(commands.Cog):
         self.bot = bot
         self.config = default.config()
         self.process = psutil.Process(os.getpid())
-    
+
+    ## Proof of concept for use with @story{9}
     @commands.command()
     async def hello(self, ctx):
         """Greet the user and ask them how their day is."""
@@ -30,7 +31,7 @@ class Information(commands.Cog):
 
             # check that the author is the same between the message and the context
             author_result = msg.author == ctx.author
-            
+
             return channel_result and author_result
 
         try:
@@ -51,7 +52,7 @@ class Information(commands.Cog):
                 await ctx.send("That's great!")
             else:
                 await ctx.send("I'm sorry, I don't understand your response")
-        
+
     @commands.command()
     async def ping(self, ctx):
         """ Pong! """
