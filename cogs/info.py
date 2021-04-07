@@ -16,30 +16,38 @@ class Information(commands.Cog):
         self.process = psutil.Process(os.getpid())
     
     @commands.command()
-    async def trivia (self, ctx, arg = ""):
-        if (arg.lower() == "begin" or arg.lower() == "start"):
-            if (self.bot.trivia.inProgress):
+    async def trivia (self, ctx, arg1 = "", arg2 = ""):
+
+        # *** BEGIN ***
+        if (arg1.lower() == "begin" or arg1.lower() == "start"):
+            if (ctx.bot.trivia.inProgress):
                 await ctx.send("Trivia is already in progress")
             else:
                 await ctx.send("Starting trivia...")
-                # Add initiate trivia operation here
-                self.bot.trivia.inProgress = True
+                if (ctx.bot.trivia().start() == 0):
+                    ctx.bot.trivia.inProgress = True
 
-        elif (arg.lower() == "end" or arg.lower() == "stop"):
+        # *** END ***
+        elif (arg1.lower() == "end" or arg1.lower() == "stop"):
             if (self.bot.trivia.inProgress):
                 await ctx.send("Stopping trivia...")
-                # Add stop trivia operations here
-                self.bot.trivia.inProgress = False
+                if (self.bot.trivia().end() == 0):
+                    self.bot.trivia.inProgress = False
             else:
                 await ctx.send("Trivia is not in progress")
 
-        elif (arg.lower() == "status" or arg == ""):
-            # Print current status of trivia here
-            await ctx.send("Print trivia status")
-
+        # *** STATUS ***
+        elif (arg1.lower() == "status"):
+            await ctx.send(self.bot.trivia().status())
+        
+        # *** ANSWER ***
+        elif (arg1.lower() == "answer"):
+            if (self.bot.trivia().check(arg2) == 0):
+                await ctx.send("Correct")
+            else:
+                await ctx.send("Not Correct")
         else:
-            # Handle answer checking and bad arguments here
-            await ctx.send("arg: " + arg)
+            await ctx.send("arg1: " + arg1)
  
     @commands.command()
     async def hello(self, ctx):

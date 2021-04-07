@@ -53,9 +53,32 @@ class Trivia:
     # Object for holding the list of questions
     qlist: QuestionList
 
+    # The inProgress variable is used to keep track of
+    # whether a trivia game is in progress or not.
     inProgress: bool
 
     def __init__(self):
         self.qlist = QuestionList([QuestionAnswer("Question 1", "Answer 1")])
         self.inProgress = False
 
+    # This function is responsible for starting the trivia game.
+    def start(self) -> int:
+        # Return non-zero value to indicate failure
+        # Return 0 to indicate success
+        return 0
+
+    # This function is responsible for ending the trivia game.
+    def end(self) -> int:
+        # Return non-zero value to indicate failure
+        # Return 0 to indicate success
+        return 0
+
+    def check(self, answer) -> int:
+        # Return non-zero value to indicate failure
+        # Return 0 to indicate success
+        return 0
+
+    # This function is responsible for returning the status of the
+    # trivia game.
+    def status(self) -> str:
+        return "Trivia Status!"
