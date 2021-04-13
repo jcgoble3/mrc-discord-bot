@@ -1,6 +1,6 @@
 import discord
 
-from utils import permissions
+from utils import permissions, listener
 from discord.ext.commands import AutoShardedBot, DefaultHelpCommand
 
 
@@ -13,6 +13,7 @@ class Bot(AutoShardedBot):
         if not self.is_ready() or msg.author.bot or not permissions.can_handle(msg, "send_messages"):
             return
 
+        await listener.check_for_word(msg)
         await self.process_commands(msg)
 
 
