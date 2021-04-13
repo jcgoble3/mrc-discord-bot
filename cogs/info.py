@@ -17,6 +17,44 @@ class Information(commands.Cog):
 
     ## Proof of concept for use with @story{9}
     @commands.command()
+    async def trivia (self, ctx, arg1 = "", arg2 = ""):
+
+        # *** BEGIN ***
+        if (arg1.lower() == "begin" or arg1.lower() == "start"):
+            if (self.bot.trivia.inProgress):
+                await ctx.send("Trivia is already in progress")
+            else:
+                await ctx.send("Starting trivia...")
+                if (self.bot.trivia.start() == 0):
+                    self.bot.trivia.inProgress = True
+
+        # *** END ***
+        elif (arg1.lower() == "end" or arg1.lower() == "stop"):
+            if (self.bot.trivia.inProgress):
+                await ctx.send("Stopping trivia...")
+                if (self.bot.trivia.end() == 0):
+                    self.bot.trivia.inProgress = False
+            else:
+                await ctx.send("Trivia is not in progress")
+
+        # *** STATUS ***
+        elif (arg1.lower() == "status"):
+            await ctx.send(self.bot.trivia.status())
+        
+        # *** ANSWER ***
+        elif (arg1.lower() == "answer"):
+            if (self.bot.trivia.check(arg2) == 0):
+                await ctx.send("Correct")
+                # Handle what should happen when a correct
+                # answer is submitted
+            else:
+                await ctx.send("Not Correct")
+                # Handle what should happen when an incorrect
+                # answer is submitted
+        else:
+            await ctx.send("arg1: " + arg1)
+ 
+    @commands.command()
     async def hello(self, ctx):
         """Greet the user and ask them how their day is."""
         # These lines send the greeting
