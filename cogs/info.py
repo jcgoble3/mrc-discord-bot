@@ -107,6 +107,17 @@ class Information(commands.Cog):
 
         await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **{self.config['version']}**", embed=embed)
 
+    ## Logging messages sent in chat for use with @story{11}
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        log_file = open("LogFile.txt", "a")
+        msg = """
+User:{}
+Time:{}
+Message:{}
+\n""".format(message.author, time.localtime(), message.content)
+        log_file.write(msg)
+        log_file.close()
 
 def setup(bot):
     bot.add_cog(Information(bot))
