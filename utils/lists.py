@@ -29,8 +29,6 @@ with open ("trivia_questions_answers.txt") as fp:
 _all_questions = []
 for i in range(q_count):
      _all_questions.append(QuestionAnswer(questions[i], answers[i]))
-        
-# Added a file to store the questions and answers, then placed everything in the QuestionList
 
 ## @story{9} The list of questions needs to be packed into the designed
 #  data structure.
