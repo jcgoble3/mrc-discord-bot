@@ -52,7 +52,10 @@ class Trivia:
 
     # Object for holding the list of questions
     qlist: QuestionList
-
+    
+    # Object for holding the question currently in use by an instance of Trivia
+    qAsked: QuestionAnswer
+    
     # The inProgress variable is used to keep track of
     # whether a trivia game is in progress or not.
     inProgress: bool
@@ -76,7 +79,11 @@ class Trivia:
     def check(self, answer) -> int:
         # Return non-zero value to indicate failure
         # Return 0 to indicate success
-        return 0
+        if (self.qAsked.answer == answer)
+            return 0
+        else
+            return -1
+        
 
     # This function is responsible for returning the status of the
     # trivia game.

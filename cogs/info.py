@@ -27,7 +27,7 @@ class Information(commands.Cog):
                 await ctx.send("Starting trivia...")
                 if (self.bot.trivia.start() == 0):
                     self.bot.trivia.inProgress = True
-
+   
         # *** END ***
         elif (arg1.lower() == "end" or arg1.lower() == "stop"):
             if (self.bot.trivia.inProgress):
