@@ -1,4 +1,4 @@
-from utils.trivia_data import QuestionAnswer, QuestionList
+from utils.trivia import QuestionAnswer, QuestionList
 
 ballresponse = [
     'Yes', 'No', 'Take a wild guess...', 'Very doubtful',

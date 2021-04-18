@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 import random
+import enum
 
 from typing import Iterable, List
-
 
 ## @story{9} In order to do trivia, the bot must be able to link a question
 #  to its corresponding answer. Additionally, standard conventions of the
@@ -13,6 +13,9 @@ class QuestionAnswer:
     question: str
     answer: str
 
+    def __init__(self, question, answer):
+        self.question = question
+        self.answer = answer
 
 ## @story{9} In order to do trivia, the bot must be able to have multiple
 #  questions available and select one at random.
@@ -57,3 +60,42 @@ class QuestionList:
     #  messages
     def __len__(self) -> int:
         return self.count
+
+
+# Trivia game object
+# The purpose of this object is to hold trivia game data and
+# maintain game state.
+class Trivia:
+
+    # Object for holding the list of questions
+    qlist: QuestionList
+
+    # The inProgress variable is used to keep track of
+    # whether a trivia game is in progress or not.
+    inProgress: bool
+
+    def __init__(self):
+        self.qlist = QuestionList([QuestionAnswer("Question 1", "Answer 1")])
+        self.inProgress = False
+
+    # This function is responsible for starting the trivia game.
+    def start(self) -> int:
+        # Return non-zero value to indicate failure
+        # Return 0 to indicate success
+        return 0
+
+    # This function is responsible for ending the trivia game.
+    def end(self) -> int:
+        # Return non-zero value to indicate failure
+        # Return 0 to indicate success
+        return 0
+
+    def check(self, answer) -> int:
+        # Return non-zero value to indicate failure
+        # Return 0 to indicate success
+        return 0
+
+    # This function is responsible for returning the status of the
+    # trivia game.
+    def status(self) -> str:
+        return "Trivia Status!"
