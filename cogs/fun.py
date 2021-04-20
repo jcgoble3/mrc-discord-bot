@@ -48,6 +48,13 @@ class Fun_Commands(commands.Cog):
             bio = BytesIO(req)
             bio.seek(0)
             await ctx.send(content=content, file=discord.File(bio, filename=filename))
+    
+    @commands.command(aliases=['meme'])       
+    async def meme(self, ctx, arg1 = ""):    
+        """ Posts a random meme """
+        memeToUse = random.choice(lists.all_memes)
+        memePath = "memes/" + memeToUse
+        await ctx.send(file=discord.File(memePath))
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)

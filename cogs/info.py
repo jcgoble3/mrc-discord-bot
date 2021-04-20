@@ -50,14 +50,6 @@ class Information(commands.Cog):
                 
         else:
             await ctx.send("arg1: " + arg1)
-    
-    @commands.command()
-    async def meme(self, ctx, arg1 = ""):
-    
-        # *** MEME *** 
-        if (arg1.lower() == "meme"):
-            meme = "memes/" + self.bot.get_random_meme()
-            await ctx.send(file=discord.File(meme))
  
     @commands.command()
     async def hello(self, ctx):

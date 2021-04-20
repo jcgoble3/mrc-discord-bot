@@ -36,9 +36,6 @@ for i in range(q_count):
 #  data structure.
 trivia_questions = QuestionList(_all_questions)
 
-_all_memes = []
+all_memes = []
 for filename in os.listdir("memes"):
     all_memes.append(filename)
-    
-bot_memes = MemeList(_all_memes)
-
