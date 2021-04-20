@@ -1,4 +1,6 @@
 from utils.trivia import QuestionAnswer, QuestionList
+from utils.memes import MemeList
+import os
 
 ballresponse = [
     'Yes', 'No', 'Take a wild guess...', 'Very doubtful',
@@ -33,3 +35,10 @@ for i in range(q_count):
 ## @story{9} The list of questions needs to be packed into the designed
 #  data structure.
 trivia_questions = QuestionList(_all_questions)
+
+_all_memes = []
+for filename in os.listdir("memes"):
+    all_memes.append(filename)
+    
+bot_memes = MemeList(_all_memes)
+
