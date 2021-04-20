@@ -317,7 +317,7 @@ class Fun_Commands(commands.Cog):
     async def xkcdcomic(self, ctx):
         """Returns a random xkcd comic"""
 
-        await ctx.send("Comic command was called")
+        await ctx.send(random.randint(1,2400))
 
 
 def setup(bot):
