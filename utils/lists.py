@@ -1,5 +1,4 @@
 from utils.trivia import QuestionAnswer, QuestionList
-from utils.memes import MemeList
 import os
 
 ballresponse = [
