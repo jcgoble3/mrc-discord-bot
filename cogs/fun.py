@@ -312,5 +312,13 @@ class Fun_Commands(commands.Cog):
         ]
         await ctx.send(random.choice(allJokes))
 
+
+    @commands.command(aliases=['comic'])
+    async def xkcdcomic(self, ctx):
+        """Returns a random xkcd comic"""
+
+        await ctx.send("Comic command was called")
+
+
 def setup(bot):
     bot.add_cog(Fun_Commands(bot))
