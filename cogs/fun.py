@@ -49,7 +49,7 @@ class Fun_Commands(commands.Cog):
             bio.seek(0)
             await ctx.send(content=content, file=discord.File(bio, filename=filename))
     
-    @commands.command(aliases=['meme'])       
+    @commands.command(aliases=['give_meme'])       
     async def meme(self, ctx, arg1 = ""):    
         """ Posts a random meme """
         memeToUse = random.choice(lists.all_memes)
