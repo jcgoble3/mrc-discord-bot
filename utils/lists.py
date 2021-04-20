@@ -35,6 +35,7 @@ for i in range(q_count):
 #  data structure.
 trivia_questions = QuestionList(_all_questions)
 
+#List for holding file names from meme directory
 all_memes = []
 for filename in os.listdir("memes"):
     all_memes.append(filename)
