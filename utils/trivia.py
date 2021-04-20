@@ -96,9 +96,9 @@ class Trivia:
     def check(self, answer) -> int:
         # Return non-zero value to indicate failure
         # Return 0 to indicate success
-        if (self.qAsked.answer == answer)
+        if (self.qAsked.answer == answer):
             return 0
-        else
+        else:
             return -1
         
 
