@@ -50,6 +50,12 @@ class Information(commands.Cog):
                 
         else:
             await ctx.send("arg1: " + arg1)
+    
+    @commands.command()
+    async def meme(self, ctx, arg1 = ""):
+    
+        # *** MEME *** 
+        
  
     @commands.command()
     async def hello(self, ctx):

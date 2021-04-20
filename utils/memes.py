@@ -1,4 +1,5 @@
 import random
+from typing import Iterable, List
 
 class MemeList:
     
