@@ -15,7 +15,6 @@ class Information(commands.Cog):
         self.config = default.config()
         self.process = psutil.Process(os.getpid())
 
-    ## Proof of concept for use with @story{9}
     @commands.command()
     async def trivia (self, ctx, arg1 = "", arg2 = ""):
 
@@ -54,6 +53,7 @@ class Information(commands.Cog):
         else:
             await ctx.send("arg1: " + arg1)
  
+    ## Proof of concept for use with @story{9}
     @commands.command()
     async def hello(self, ctx):
         """Greet the user and ask them how their day is."""
