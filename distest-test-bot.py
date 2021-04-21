@@ -14,8 +14,8 @@ from distest import TestCollector, run_dtest_bot
 test = TestCollector()
 
 @test()
-async def test_ping(interface):
-    await interface.assert_reply_contains("!ping", "Pong!")
+async def test_reverse(interface):
+    await interface.assert_reply_contains("!reverse this class sucks", "skcus ssalc siht")
 
 
 if __name__ == "__main__":
