@@ -72,7 +72,7 @@ class Information(commands.Cog):
                 await ctx.send("Starting trivia...")
                 if (self.bot.trivia.start() == 0):
                     self.bot.trivia.inProgress = True
-
+   
         # *** END ***
         elif (arg1.lower() == "end" or arg1.lower() == "stop"):
             if (self.bot.trivia.inProgress):
@@ -89,13 +89,10 @@ class Information(commands.Cog):
         # *** ANSWER ***
         elif (arg1.lower() == "answer"):
             if (self.bot.trivia.check(arg2) == 0):
-                await ctx.send("Correct")
-                # Handle what should happen when a correct
-                # answer is submitted
+                await ctx.send(f"Answer: " + arg2 + " is correct!")
             else:
-                await ctx.send("Not Correct")
-                # Handle what should happen when an incorrect
-                # answer is submitted
+                await ctx.send(f"Sorry, answer: " + arg2 + " is incorrect.")
+                
         else:
             await ctx.send("arg1: " + arg1)
  
