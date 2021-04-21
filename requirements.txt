@@ -1,3 +1,7 @@
 discord.py
 psutil
 timeago==1.0.13
+
+# testing support
+pytest
+pytest-cov
