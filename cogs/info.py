@@ -25,10 +25,17 @@ class Information(commands.Cog):
     # string (the message) with a populated list of Reaction objects. 
     # For the purposes of this class, a poll is a Message object, which
     # contains a formatted string (the message) and two reactions.
+    #
+    # NOTE: Asserts used on asynchronus objects in this function can only
+    #       be considered reliable in a controlled testing environment. In
+    #       a normal live environemnt, the events may not occur in a linear
+    #       fashion, potentially causing the asserts to fail due to actions
+    #       performed outside the scope of this function.
     @commands.command()
     async def poll (self, ctx, question = "", answer_option_1 = "", answer_option_2 = ""):
         # The context object must not be None
-        assert ctx, "ctx must not be None"
+        if __debug__:
+            assert ctx, "ctx must not be None"
 
         # Test for empty input
         if (not (question and answer_option_1 and answer_option_2)):
@@ -49,17 +56,23 @@ class Information(commands.Cog):
         # understanding of the concept. It can be fairly argued that an assert needs
         # added for every field of the object to verify it was created correctly but
         # that seems execessive and unnecessary for the purposes of this class.
-        assert poll.id >= 0, "The message must have a valid ID"
-        assert poll.channel == ctx.channel, "The message must be for the same channel that was passed as an argument to poll"
+        if __debug__:
+            assert poll.id >= 0, "The message must have a valid ID"
+            assert poll.channel == ctx.channel, "The message must be for the same channel that was passed as an argument to poll"
 
         # Add the first reaction
         await poll.add_reaction('✅') 
         poll = await ctx.fetch_message(poll.id)
-        assert len(poll.reactions) == 1, "One reaction must be added to the message"
+        # Assert that one reaction was added to an empty list of reactions.
+        if __debug__:
+            assert len(poll.reactions) == 1, "One reaction must be added to the message"
 
+        # Add the second reaction
         await poll.add_reaction('❎')
         poll = await ctx.fetch_message(poll.id)
-        assert len(poll.reactions) == 2, "A second reaction must be added to the message"
+        # Assert that one reaction was added to a list containing one reaction.
+        if __debug__:
+            assert len(poll.reactions) == 2, "A second reaction must be added to the message"
 
     @commands.command()
     async def trivia (self, ctx, arg1 = "", arg2 = ""):
