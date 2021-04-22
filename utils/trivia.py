@@ -81,21 +81,25 @@ class Trivia:
         
         if __debug__:
             assert type(self) is Trivia, "self must be of type Trivia"
-            assert type(self.qlist) is QuestionList, "The qlist variable must be of type QuestionList"
-            assert type(qAsked) is QuestionAnswer, "The qAsked variable must be of type QuestionAnswer"
+
+        self.qAsked = QuestionAnswer("Question asked", "Answer asked")
+
+        if __debug__:
+            assert type(self.qAsked) is QuestionAnswer, "The qAsked variable must be of type QuestionAnswer"
 
         # This line prepopulates the question list and is only here to facilitate
         # ease of development. Had development continued far enough, this line would
         # be replaced with code that would read in the questions and answers from an
         # external source.
         self.qlist = QuestionList([QuestionAnswer("Question 1", "Answer 1")])
-
+        
         if __debug__:
-            assert type(self.inProgress) is bool, "The inProgress variable must be of type boolean"
+            assert type(self.qlist) is QuestionList, "The qlist variable must be of type QuestionList"
 
         self.inProgress = False
         
         if __debug__:
+            assert type(self.inProgress) is bool, "The inProgress variable must be of type boolean"
             assert self.inProgress == False, "inProgress must be False when the Trivia object is initialized"
 
     ## This function is responsible for starting the trivia game.
