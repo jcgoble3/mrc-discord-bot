@@ -13,11 +13,21 @@ class Bot(AutoShardedBot):
         self.trivia = Trivia()
 
     async def on_message(self, msg):
-        if not self.is_ready() or msg.author.bot or not permissions.can_handle(msg, "send_messages"):
+        if not self.is_ready() or not permissions.can_handle(msg, "send_messages"):
             return
 
         await self.process_commands(msg)
 
+    ## @story{51} In order to test command coroutines, a second bot is needed.
+    # The default discord.py Bot class does not respond to other bots, so we
+    # must override this method to allow complete testing.
+    async def process_commands(self, message):
+        # Do nothing if sent by a bot that is not the testing bot
+        if message.author.bot and message.author.id != 834537991397572618:
+            return
+
+        ctx = await self.get_context(message)
+        await self.invoke(ctx)
 
 class HelpFormat(DefaultHelpCommand):
     def get_destination(self, no_pm: bool = False):
