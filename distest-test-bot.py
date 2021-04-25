@@ -43,6 +43,19 @@ async def test_trivia(interface):
     await interface.assert_reply_contains("!trivia stop", "Stopping")
     await interface.assert_reply_contains("!trivia oops", "arg1:")
 
+@test()
+async def test_hello(interface):
+    await interface.assert_reply_contains("!hello", "my name is")
+    await interface.assert_reply_contains("bad", "That's bad!")
+    await interface.assert_reply_contains("!hello", "my name is")
+    await interface.assert_reply_contains("good", "That's good!")
+    await interface.assert_reply_contains("!hello", "my name is")
+    await interface.assert_reply_contains("great", "That's great!")
+    await interface.assert_reply_contains("!hello", "my name is")
+    await interface.assert_reply_contains("meh", "don't understand")
+    await interface.assert_reply_contains("!hello", "my name is")
+    await interface.get_delayed_reply(12, interface.assert_message_contains, "too long to respond")
+
 # Run the tests
 
 async def run_tests():
