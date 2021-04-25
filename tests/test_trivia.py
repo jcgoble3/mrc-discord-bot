@@ -10,26 +10,33 @@ def test_QuestionList():
     for letter in "ABCDEFGHIJKLM":
         questions.append(QuestionAnswer(letter, letter))
     qlist = QuestionList(questions)
-    assert qlist.count == len(questions)
-    assert len(qlist) == len(questions)
-    for _ in range(25):
-        assert qlist.get_random_question() in questions
+    assert qlist._questions == questions
 
+def test_QuestionList_add_question():
+    qlist = QuestionList([])
     test_question = QuestionAnswer("test question", "test answer")
     qlist.add_question(test_question)
-    assert qlist.count == len(questions) + 1
+    assert qlist._questions == [test_question]
 
-    questions2 = []
-    for letter in "NOPQRSTUVWXYZ":
-        questions2.append(QuestionAnswer(letter, letter))
-    qlist.add_questions(questions2)
+def test_QuestionList_add_questions():
+    qlist = QuestionList([])
+    questions = []
+    for letter in "ABCDEFGHIJKLM":
+        questions.append(QuestionAnswer(letter, letter))
+    qlist.add_questions(questions)
+    assert qlist._questions == questions
 
-    all_questions = questions + questions2 + [test_question]
-    assert qlist.count == len(all_questions)
-    for q in all_questions:
-        assert q in qlist._questions
-    for q in qlist._questions:
-        assert q in all_questions
+def test_QuestionList_count_len():
+    questions = []
+    for letter in "ABCDEFGHIJKLM":
+        questions.append(QuestionAnswer(letter, letter))
+    qlist = QuestionList(questions)
+    assert len(qlist) == qlist.count == len(questions)
+
+def test_QuestionList_random_question():
+    test_question = QuestionAnswer("test question", "test answer")
+    qlist = QuestionList([test_question])
+    assert qlist.get_random_question() == test_question
 
 def test_Trivia():
     trivia = Trivia()
