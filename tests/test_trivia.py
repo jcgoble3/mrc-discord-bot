@@ -1,4 +1,4 @@
-from utils.trivia import QuestionAnswer, QuestionList
+from utils.trivia import QuestionAnswer, QuestionList, Trivia
 
 def test_QuestionAnswer():
     obj = QuestionAnswer("test question", "test answer")
@@ -30,3 +30,26 @@ def test_QuestionList():
         assert q in qlist._questions
     for q in qlist._questions:
         assert q in all_questions
+
+def test_Trivia():
+    trivia = Trivia()
+    assert isinstance(trivia.qlist, QuestionList)
+    assert trivia.inProgress is False
+
+def test_Trivia_start():
+    trivia = Trivia()
+    assert trivia.start() == 0
+
+def test_Trivia_status():
+    trivia = Trivia()
+    assert trivia.status() == "Trivia Status!"
+
+def test_Trivia_check():
+    trivia = Trivia()
+    trivia.qAsked = QuestionAnswer("test question", "test answer")
+    assert trivia.check("wrong answer") == -1
+    assert trivia.check("test answer") == 0
+
+def test_Trivia_end():
+    trivia = Trivia()
+    assert trivia.end() == 0
