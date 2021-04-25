@@ -21,8 +21,8 @@ class Information(commands.Cog):
     # to the channel in the form of a question, two answers and an emoji
     # button for each answer.
     #
-    # A poll is really just a Message object that contains a formated 
-    # string (the message) with a populated list of Reaction objects. 
+    # A poll is really just a Message object that contains a formated
+    # string (the message) with a populated list of Reaction objects.
     # For the purposes of this class, a poll is a Message object, which
     # contains a formatted string (the message) and two reactions.
     #
@@ -42,14 +42,14 @@ class Information(commands.Cog):
             await ctx.send(f"Cannot create poll:")
             # Inform the user what is wrong with their use of the poll command
             if (not question):
-                await ctx.send(f"No question was supplied.")            
-            if (not answer_option_1): 
-                await ctx.send(f"Answer option #1 was not supplied.")            
+                await ctx.send(f"No question was supplied.")
+            if (not answer_option_1):
+                await ctx.send(f"Answer option #1 was not supplied.")
             if (not answer_option_2):
                 await ctx.send(f"Answer option #2 was not supplied.")
             return
 
-        # Create the poll 
+        # Create the poll
         poll = await ctx.send(f"```" + question + "```\n**✅ = " + answer_option_1 + "**\n**❎ = " + answer_option_2 + "**")
         # Verify the message was created.
         # In the interest of time, only two fields are verified here to demonstrate
@@ -61,7 +61,7 @@ class Information(commands.Cog):
             assert poll.channel == ctx.channel, "The message must be for the same channel that was passed as an argument to poll"
 
         # Add the first reaction
-        await poll.add_reaction('✅') 
+        await poll.add_reaction('✅')
         poll = await ctx.fetch_message(poll.id)
         # Assert that one reaction was added to an empty list of reactions.
         if __debug__:
@@ -90,7 +90,7 @@ class Information(commands.Cog):
                 await ctx.send("Starting trivia...")
                 if (self.bot.trivia.start_game() == 0):
                     self.bot.trivia.inProgress = True
-   
+
         # *** END ***
         elif (arg1.lower() == "end" or arg1.lower() == "stop"):
             if (self.bot.trivia.inProgress):
@@ -103,24 +103,23 @@ class Information(commands.Cog):
         # *** STATUS ***
         elif (arg1.lower() == "status"):
             await ctx.send(self.bot.trivia.get_game_status())
-        
+
         # *** ANSWER ***
         elif (arg1.lower() == "answer"):
             if (self.bot.trivia.check_answer(arg2) == 0):
                 await ctx.send(f"Answer: " + arg2 + " is correct!")
             else:
                 await ctx.send(f"Sorry, answer: " + arg2 + " is incorrect.")
-                
+
         else:
             await ctx.send("arg1: " + arg1)
- 
+
     ## Proof of concept for use with @story{9}
     @commands.command()
     async def hello(self, ctx):
         """Greet the user and ask them how their day is."""
         # These lines send the greeting
-        await ctx.send(f"Hello: " + ctx.author.name + " my name is Test Bot!")
-        await ctx.send(f"How are you today?")
+        await ctx.send(f"Hello {ctx.author.name}, my name is Test Bot! How are you today?")
 
         # The purpose of the check function is to filter out messages so that only the
         # message the wait_for function is looking for is returned
