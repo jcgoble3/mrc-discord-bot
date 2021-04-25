@@ -1,4 +1,5 @@
 from utils.trivia import QuestionAnswer, QuestionList, Trivia
+from utils.lists import load_trivia_questions
 
 def test_QuestionAnswer():
     obj = QuestionAnswer("test question", "test answer")
@@ -37,6 +38,16 @@ def test_QuestionList_random_question():
     test_question = QuestionAnswer("test question", "test answer")
     qlist = QuestionList([test_question])
     assert qlist.get_random_question() == test_question
+
+def test_load_trivia_questions():
+    questions = load_trivia_questions("tests/testquestions.txt")
+    expected = [
+        QuestionAnswer("Question A", "Answer A"),
+        QuestionAnswer("Question B", "Answer B"),
+        QuestionAnswer("Question C", "Answer C"),
+        QuestionAnswer("Question D", "Answer D"),
+    ]
+    assert questions == expected
 
 def test_Trivia():
     trivia = Trivia()

@@ -21,9 +21,9 @@ def load_trivia_questions(filename: str):
         for line in fp:
             count += 1
             if count % 2 == 0:  # answer
-                answers.append(line)
+                answers.append(line.rstrip())
             else:  # question
-                questions.append(line)
+                questions.append(line.rstrip())
 
     all_questions = []
     for i in range(len(questions)):
