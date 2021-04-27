@@ -24,6 +24,14 @@ from distest.exceptions import TestRequirementFailure
 test = TestCollector()
 
 @test()
+async def startup_delay(interface):
+    # There is a race condition with the first test sometimes being
+    # attempted before the tested bot is ready, resulting in random
+    # failures. This delay helps to ensure that the bot is ready to
+    # accept commands.
+    await asyncio.sleep(10)
+
+@test()
 async def test_reverse(interface):
     await interface.assert_reply_contains("!reverse this class sucks", "skcus ssalc siht")
 
