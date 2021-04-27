@@ -89,6 +89,16 @@ async def test_hello(interface):
     await interface.assert_reply_contains("!hello", "my name is")
     await interface.get_delayed_reply(12, interface.assert_message_contains, "too long to respond")
 
+@test()
+async def test_poll(interface):
+    message = await interface.wait_for_reply("!poll question answer_yes answer_no")
+    await interface.assert_message_contains(message, "question")
+    await interface.assert_message_contains(message, "answer_yes")
+    await interface.assert_message_contains(message, "answer_no")
+    # poll is largely self-testing due to programming by contract, so
+    # just let the bot finish the reactions
+    await asyncio.sleep(3)
+
 # Run the tests
 
 async def run_tests():
