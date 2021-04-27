@@ -27,6 +27,10 @@ async def test_reverse(interface):
     await interface.assert_reply_contains("!reverse this class sucks", "skcus ssalc siht")
 
 @test()
+async def test_filter(interface):
+    await interface.assert_reply_contains("shit", "Bad word detected!")
+
+@test()
 async def test_joke(interface):
     # Random response is hard to test; ? is the only thing common to all
     # responses
