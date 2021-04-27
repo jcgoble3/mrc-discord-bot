@@ -10,7 +10,7 @@ i = 0
 answers = []
 questions = []
 
-
+## @story{9} The bot reads in a list of questions to choose from.
 with open ("trivia_questions_answers.txt") as fp:
     count = 0
     a_count = 0
@@ -25,7 +25,7 @@ with open ("trivia_questions_answers.txt") as fp:
             questions.append(line)
             q_count+=1
 
-## @story{9} The bot needs a list of questions to choose from.
+
 _all_questions = []
 for i in range(q_count):
      _all_questions.append(QuestionAnswer(questions[i], answers[i]))
