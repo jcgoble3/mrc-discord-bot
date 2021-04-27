@@ -17,6 +17,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from distest import TestCollector, run_dtest_bot
 from distest.patches import patch_target
+from distest.exceptions import TestRequirementFailure
 
 # Actual tests
 
@@ -29,6 +30,18 @@ async def test_reverse(interface):
 @test()
 async def test_filter(interface):
     await interface.assert_reply_contains("shit", "Bad word detected!")
+
+@test()
+async def test_logging(interface):
+    with open("LogFile.txt", "r") as file:
+        before = file.read()
+    message = "abcdefghijklmnopqrstuvwxyz0123456789"
+    await interface.send_message(message)
+    await asyncio.sleep(1)
+    with open("LogFile.txt", "r") as file:
+        diff = file.read()[len(before):]
+    if message not in diff:
+        raise TestRequirementFailure
 
 @test()
 async def test_joke(interface):
