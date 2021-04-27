@@ -54,6 +54,10 @@ async def test_meme(interface):
     await interface.assert_reply_has_image("!meme")
 
 @test()
+async def test_xkcd(interface):
+    await interface.assert_reply_contains("!comic", "https://xkcd.com/")
+
+@test()
 async def test_trivia(interface):
     await interface.assert_reply_contains("!trivia stop", "not in progress")
     await interface.assert_reply_contains("!trivia start", "Starting")
