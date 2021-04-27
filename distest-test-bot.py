@@ -99,6 +99,14 @@ async def test_poll(interface):
     # just let the bot finish the reactions
     await asyncio.sleep(3)
 
+@test()
+async def test_bad_poll(interface):
+    message = await interface.wait_for_reply("!poll")
+    await interface.assert_message_contains(message, "Cannot create poll")
+    await interface.assert_message_contains(message, "No question")
+    await interface.assert_message_contains(message, "option #1")
+    await interface.assert_message_contains(message, "option #2")
+
 # Run the tests
 
 async def run_tests():
