@@ -1,7 +1,8 @@
 import discord
 
+
+from utils import permissions, listener
 from utils.trivia import QuestionAnswer, QuestionList, Trivia
-from utils import permissions
 from discord.ext.commands import AutoShardedBot, DefaultHelpCommand
 
 class Bot(AutoShardedBot):
@@ -15,8 +16,10 @@ class Bot(AutoShardedBot):
     async def on_message(self, msg):
         if not self.is_ready() or not permissions.can_handle(msg, "send_messages"):
             return
-
-        await self.process_commands(msg)
+        if await listener.check_for_profanity(msg):
+            await msg.channel.send("Bad word detected!")
+        else:
+            await self.process_commands(msg)
 
     ## @story{51} In order to test command coroutines, a second bot is needed.
     # The default discord.py Bot class does not respond to other bots, so we
