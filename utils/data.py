@@ -16,7 +16,7 @@ class Bot(AutoShardedBot):
     async def on_message(self, msg):
         if not self.is_ready() or not permissions.can_handle(msg, "send_messages"):
             return
-        if await listener.check_for_profanity(msg):
+        if listener.check_for_profanity(msg.content):
             await msg.channel.send("Bad word detected!")
         else:
             await self.process_commands(msg)
