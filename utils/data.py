@@ -33,7 +33,10 @@ class Bot(AutoShardedBot):
         await self.invoke(ctx)
         
     async def on_member_join(self, member):
-        await ctx.send(f"Welcome **{member.name}** to the server!")
+        server = member.guild
+        channel = server.channels[0].text_channels[0]
+        welcomeMessage = (f"Welcome {member.name}!")
+        await channel.send(welcomeMessage)
 
 class HelpFormat(DefaultHelpCommand):
     def get_destination(self, no_pm: bool = False):
