@@ -66,13 +66,13 @@ class QuestionList:
 # maintain game state.
 class Trivia:
 
-    # @story{9} Object for holding the list of questions
+    ## @story{9} Object for holding the list of questions
     qlist: QuestionList
 
-    # @story{9} Object for holding the question currently in use by an instance of Trivia
+    ## @story{9} Object for holding the question currently in use by an instance of Trivia
     qAsked: QuestionAnswer
 
-    # @story{9} Used to keep track of whether a trivia game is in progress or not.
+    ## @story{9} Used to keep track of whether a trivia game is in progress or not.
     inProgress: bool
 
     def __init__(self):
