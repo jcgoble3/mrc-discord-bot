@@ -48,9 +48,9 @@ class Fun_Commands(commands.Cog):
             bio = BytesIO(req)
             bio.seek(0)
             await ctx.send(content=content, file=discord.File(bio, filename=filename))
-    
-    @commands.command(aliases=['give_meme'])       
-    async def meme(self, ctx, arg1 = ""):    
+
+    @commands.command(aliases=['give_meme'])
+    async def meme(self, ctx, arg1 = ""):
         """ Posts a random meme """
         memeToUse = random.choice(lists.all_memes)
         memePath = "memes/" + memeToUse
@@ -325,6 +325,15 @@ class Fun_Commands(commands.Cog):
         """Returns a random xkcd comic"""
 
         await ctx.send(f"https://xkcd.com/" + str(random.randint(1,2400)) + "/")
+
+    @commands.command(aliases=['guess'])
+    async def guess_the_game(self, ctx, player_guess: int):
+        """Guess a number between 1-10"""
+        computer_number = random.randint(1, 11)
+        if computer_number == player_guess:
+            await ctx.send("You guessed the correct number!")
+        else:
+            await ctx.send(f"That was wrong! The correct number is {computer_number}")
 
 
 def setup(bot):
