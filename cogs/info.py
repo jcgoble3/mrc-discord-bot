@@ -18,6 +18,11 @@ class Information(commands.Cog):
     ## Proof of concept for use with @story{9}
     @commands.command()
     async def trivia (self, ctx, arg1 = "", arg2 = ""):
+        if __debug__:
+            assert ctx, "ctx must not be None"
+            assert isinstance(ctx, discord.ext.commands.Context), "ctx must be of type Context"
+            assert type(arg1) is str, "arg1 must be of type str"
+            assert type(arg2) is str, "arg2 must be of type str"
 
         # *** BEGIN ***
         if (arg1.lower() == "begin" or arg1.lower() == "start"):
@@ -25,25 +30,25 @@ class Information(commands.Cog):
                 await ctx.send("Trivia is already in progress")
             else:
                 await ctx.send("Starting trivia...")
-                if (self.bot.trivia.start() == 0):
+                if (self.bot.trivia.start_game() == 0):
                     self.bot.trivia.inProgress = True
    
         # *** END ***
         elif (arg1.lower() == "end" or arg1.lower() == "stop"):
             if (self.bot.trivia.inProgress):
                 await ctx.send("Stopping trivia...")
-                if (self.bot.trivia.end() == 0):
+                if (self.bot.trivia.end_game() == 0):
                     self.bot.trivia.inProgress = False
             else:
                 await ctx.send("Trivia is not in progress")
 
         # *** STATUS ***
         elif (arg1.lower() == "status"):
-            await ctx.send(self.bot.trivia.status())
+            await ctx.send(self.bot.trivia.get_game_status())
         
         # *** ANSWER ***
         elif (arg1.lower() == "answer"):
-            if (self.bot.trivia.check(arg2) == 0):
+            if (self.bot.trivia.check_answer(arg2) == 0):
                 await ctx.send(f"Answer: " + arg2 + " is correct!")
             else:
                 await ctx.send(f"Sorry, answer: " + arg2 + " is incorrect.")

@@ -79,13 +79,7 @@ class Trivia:
 
     def __init__(self):
         
-        if __debug__:
-            assert type(self) is Trivia, "self must be of type Trivia"
-
         self.qAsked = QuestionAnswer("Question asked", "Answer asked")
-
-        if __debug__:
-            assert type(self.qAsked) is QuestionAnswer, "The qAsked variable must be of type QuestionAnswer"
 
         # This line prepopulates the question list and is only here to facilitate
         # ease of development. Had development continued far enough, this line would
@@ -93,21 +87,17 @@ class Trivia:
         # external source.
         self.qlist = QuestionList([QuestionAnswer("Question 1", "Answer 1")])
         
-        if __debug__:
-            assert type(self.qlist) is QuestionList, "The qlist variable must be of type QuestionList"
-
         self.inProgress = False
         
-        if __debug__:
-            assert type(self.inProgress) is bool, "The inProgress variable must be of type boolean"
-            assert self.inProgress == False, "inProgress must be False when the Trivia object is initialized"
-
     ## This function is responsible for starting the trivia game.
     # Return non-zero value to indicate failure
     # Return 0 to indicate success
     def start_game(self) -> int:
         if __debug__:
-            assert type(self) is Trivia, "self must be of type Trivia"
+            assert type(self.inProgress) is bool, "The inProgress variable must be of type boolean"
+            assert self.inProgress == False, "inProgress must be False when start_game is called"
+
+            # Remainder of function not yet implemented, this is just a stub.
 
         return 0
 
@@ -116,7 +106,10 @@ class Trivia:
     # Return 0 to indicate success
     def end_game(self) -> int:
         if __debug__:
-            assert type(self) is Trivia, "self must be of type Trivia"
+            assert type(self.inProgress) is bool, "The inProgress variable must be of type boolean"
+            assert self.inProgress == True, "inProgress must be True when the Trivia object is initialized"
+
+            # Remainder of function not yet implemented, this is just a stub.
 
         return 0
 
@@ -126,7 +119,6 @@ class Trivia:
     # Return 0 to indicate success
     def check_answer(self, answer) -> int:
         if __debug__:
-            assert type(self) is Trivia, "self must be of type Trivia"
             assert type(answer) is str, "The answer argument must be of type str"
 
         if (self.qAsked.answer == answer):
@@ -139,7 +131,6 @@ class Trivia:
     # trivia game.
     def get_game_status(self) -> str:
         if __debug__:
-            assert type(self) is Trivia, "self must be of type Trivia"
             assert type(self.inProgress) is bool, "inProgress must be of type bool"
 
         if (self.inProgress):
