@@ -31,6 +31,14 @@ class Bot(AutoShardedBot):
 
         ctx = await self.get_context(message)
         await self.invoke(ctx)
+    
+    ## @story{74} Bot will send a message to the first listed text channel 
+    # when a new user joins the server.   
+    async def on_member_join(self, member):
+        server = member.guild
+        channel = server.channels[0].text_channels[0]
+        welcomeMessage = (f"Welcome {member.name}!")
+        await channel.send(welcomeMessage)
 
 class HelpFormat(DefaultHelpCommand):
     def get_destination(self, no_pm: bool = False):
