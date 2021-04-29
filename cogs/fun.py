@@ -314,6 +314,7 @@ class Fun_Commands(commands.Cog):
 
     @commands.command(aliases=['guess'])
     async def guess_the_game(self, ctx, player_guess: int):
+        """Guess a number between 1-10"""
         computer_number = random.randint(1, 11)
         if computer_number == player_guess:
             await ctx.send("You guessed the correct number!")
