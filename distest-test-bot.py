@@ -31,14 +31,18 @@ async def startup_delay(interface):
     # accept commands.
     await asyncio.sleep(10)
 
+## @story{51} This test of a pre-existing command was used as a
+# proof-of-concept for the use of distest to test commands.
 @test()
 async def test_reverse(interface):
     await interface.assert_reply_contains("!reverse this class sucks", "skcus ssalc siht")
 
+## @story{8}
 @test()
 async def test_filter(interface):
     await interface.assert_reply_contains("shit", "Bad word detected!")
 
+## @story{11}
 @test()
 async def test_logging(interface):
     with open("LogFile.txt", "r") as file:
@@ -51,20 +55,24 @@ async def test_logging(interface):
     if message not in diff:
         raise TestRequirementFailure
 
+## @story{10}
 @test()
 async def test_joke(interface):
     # Random response is hard to test; ? is the only thing common to all
     # responses
     await interface.assert_reply_contains("!joke", "?")
 
+## @story{6}
 @test()
 async def test_meme(interface):
     await interface.assert_reply_has_image("!meme")
 
+## @story{58}
 @test()
 async def test_xkcd(interface):
     await interface.assert_reply_contains("!comic", "https://xkcd.com/")
 
+## @story{9}
 @test()
 async def test_trivia(interface):
     await interface.assert_reply_contains("!trivia stop", "not in progress")
@@ -77,6 +85,7 @@ async def test_trivia(interface):
     await interface.assert_reply_contains("!trivia stop", "Stopping")
     await interface.assert_reply_contains("!trivia oops", "arg1:")
 
+## @story{83}
 @test()
 async def test_hello(interface):
     await interface.assert_reply_contains("!hello", "my name is")
@@ -90,6 +99,7 @@ async def test_hello(interface):
     await interface.assert_reply_contains("!hello", "my name is")
     await interface.get_delayed_reply(12, interface.assert_message_contains, "too long to respond")
 
+## @story{15}
 @test()
 async def test_poll(interface):
     message = await interface.wait_for_reply("!poll question answer_yes answer_no")
@@ -100,6 +110,7 @@ async def test_poll(interface):
     # just let the bot finish the reactions
     await asyncio.sleep(3)
 
+## @story{15}
 @test()
 async def test_bad_poll(interface):
     message = await interface.wait_for_reply("!poll")
