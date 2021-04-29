@@ -13,6 +13,7 @@ class Bot(AutoShardedBot):
         self.prefix = prefix
         self.trivia = Trivia()
 
+    ## Bot check removed for @story{51}. Profanity check added for @story{8}.
     async def on_message(self, msg):
         if not self.is_ready() or not permissions.can_handle(msg, "send_messages"):
             return
@@ -31,9 +32,9 @@ class Bot(AutoShardedBot):
 
         ctx = await self.get_context(message)
         await self.invoke(ctx)
-    
-    ## @story{74} Bot will send a message to the first listed text channel 
-    # when a new user joins the server.   
+
+    ## @story{74} Bot will send a message to the first listed text channel
+    # when a new user joins the server.
     async def on_member_join(self, member):
         server = member.guild
         channel = server.channels[0].text_channels[0]

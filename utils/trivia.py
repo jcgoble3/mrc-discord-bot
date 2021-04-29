@@ -62,23 +62,21 @@ class QuestionList:
         return self.count
 
 
-# Trivia game object
-# The purpose of this object is to hold trivia game data and
+## @story{9} The purpose of this object is to hold trivia game data and
 # maintain game state.
 class Trivia:
 
-    # Object for holding the list of questions
+    # @story{9} Object for holding the list of questions
     qlist: QuestionList
-    
-    # Object for holding the question currently in use by an instance of Trivia
+
+    # @story{9} Object for holding the question currently in use by an instance of Trivia
     qAsked: QuestionAnswer
-    
-    # The inProgress variable is used to keep track of
-    # whether a trivia game is in progress or not.
+
+    # @story{9} Used to keep track of whether a trivia game is in progress or not.
     inProgress: bool
 
     def __init__(self):
-        
+
         self.qAsked = QuestionAnswer("Question asked", "Answer asked")
 
         # This line prepopulates the question list and is only here to facilitate
@@ -86,12 +84,11 @@ class Trivia:
         # be replaced with code that would read in the questions and answers from an
         # external source.
         self.qlist = QuestionList([QuestionAnswer("Question 1", "Answer 1")])
-        
+
         self.inProgress = False
-        
-    ## This function is responsible for starting the trivia game.
-    # Return non-zero value to indicate failure
-    # Return 0 to indicate success
+
+    ## @story{9} Responsible for starting the trivia game.
+    # @return non-zero value to indicate failure, 0 to indicate success
     def start_game(self) -> int:
         if __debug__:
             assert type(self.inProgress) is bool, "The inProgress variable must be of type boolean"
@@ -101,9 +98,8 @@ class Trivia:
 
         return 0
 
-    ## This function is responsible for ending the trivia game.
-    # Return non-zero value to indicate failure
-    # Return 0 to indicate success
+    ## @story{9} Responsible for ending the trivia game.
+    # @return non-zero value to indicate failure, 0 to indicate success
     def end_game(self) -> int:
         if __debug__:
             assert type(self.inProgress) is bool, "The inProgress variable must be of type boolean"
@@ -113,10 +109,8 @@ class Trivia:
 
         return 0
 
-    ## This function is responsible for checking submitted answers
-    # to see if they are correct or not.
-    # Return non-zero value to indicate failure
-    # Return 0 to indicate success
+    ## @story{9} Responsible for checking submitted answers to see if they are correct or not.
+    # @return non-zero value to indicate failure, 0 to indicate success
     def check_answer(self, answer) -> int:
         if __debug__:
             assert type(answer) is str, "The answer argument must be of type str"
@@ -125,10 +119,9 @@ class Trivia:
             return 0
         else:
             return -1
-        
 
-    ## This function is responsible for returning the status of the
-    # trivia game.
+    ## @story{9} Responsible for returning the status of the trivia game.
+    # @return current status as string value
     def get_game_status(self) -> str:
         if __debug__:
             assert type(self.inProgress) is bool, "inProgress must be of type bool"
