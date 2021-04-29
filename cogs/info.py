@@ -15,7 +15,65 @@ class Information(commands.Cog):
         self.config = default.config()
         self.process = psutil.Process(os.getpid())
 
-    ## Proof of concept for use with @story{9}
+    ## Poll command @story{63}
+    # The poll command provides users with a command in which they can
+    # submit a question and two answer options which are then presented
+    # to the channel in the form of a question, two answers and an emoji
+    # button for each answer.
+    #
+    # A poll is really just a Message object that contains a formated 
+    # string (the message) with a populated list of Reaction objects. 
+    # For the purposes of this class, a poll is a Message object, which
+    # contains a formatted string (the message) and two reactions.
+    #
+    # NOTE: Asserts used on asynchronus objects in this function can only
+    #       be considered reliable in a controlled testing environment. In
+    #       a normal live environemnt, the events may not occur in a linear
+    #       fashion, potentially causing the asserts to fail due to actions
+    #       performed outside the scope of this function.
+    @commands.command()
+    async def poll (self, ctx, question = "", answer_option_1 = "", answer_option_2 = ""):
+        # The context object must not be None
+        if __debug__:
+            assert ctx, "ctx must not be None"
+
+        # Test for empty input
+        if (not (question and answer_option_1 and answer_option_2)):
+            await ctx.send(f"Cannot create poll:")
+            # Inform the user what is wrong with their use of the poll command
+            if (not question):
+                await ctx.send(f"No question was supplied.")            
+            if (not answer_option_1): 
+                await ctx.send(f"Answer option #1 was not supplied.")            
+            if (not answer_option_2):
+                await ctx.send(f"Answer option #2 was not supplied.")
+            return
+
+        # Create the poll 
+        poll = await ctx.send(f"```" + question + "```\n**✅ = " + answer_option_1 + "**\n**❎ = " + answer_option_2 + "**")
+        # Verify the message was created.
+        # In the interest of time, only two fields are verified here to demonstrate
+        # understanding of the concept. It can be fairly argued that an assert needs
+        # added for every field of the object to verify it was created correctly but
+        # that seems execessive and unnecessary for the purposes of this class.
+        if __debug__:
+            assert poll.id >= 0, "The message must have a valid ID"
+            assert poll.channel == ctx.channel, "The message must be for the same channel that was passed as an argument to poll"
+
+        # Add the first reaction
+        await poll.add_reaction('✅') 
+        poll = await ctx.fetch_message(poll.id)
+        # Assert that one reaction was added to an empty list of reactions.
+        if __debug__:
+            assert len(poll.reactions) == 1, "One reaction must be added to the message"
+
+        # Add the second reaction
+        await poll.add_reaction('❎')
+        poll = await ctx.fetch_message(poll.id)
+        # Assert that one reaction was added to a list containing one reaction.
+        if __debug__:
+            assert len(poll.reactions) == 2, "A second reaction must be added to the message"
+
     @commands.command()
     async def trivia (self, ctx, arg1 = "", arg2 = ""):
         if __debug__:
@@ -56,6 +114,7 @@ class Information(commands.Cog):
         else:
             await ctx.send("arg1: " + arg1)
  
+    ## Proof of concept for use with @story{9}
     @commands.command()
     async def hello(self, ctx):
         """Greet the user and ask them how their day is."""
@@ -147,6 +206,17 @@ class Information(commands.Cog):
 
         await ctx.send(content=f"ℹ About **{ctx.bot.user}** | **{self.config['version']}**", embed=embed)
 
+    ## Logging messages sent in chat for use with @story{11}
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        log_file = open("LogFile.txt", "a")
+        msg = """
+User:{}
+Time:{}
+Message:{}
+\n""".format(message.author, time.localtime(), message.content)
+        log_file.write(msg)
+        log_file.close()
 
 def setup(bot):
     bot.add_cog(Information(bot))

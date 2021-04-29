@@ -1,6 +1,7 @@
 # Custom
 config.json
 cogs/eval.py
+LogFile.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

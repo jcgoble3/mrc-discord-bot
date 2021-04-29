@@ -1,4 +1,5 @@
 from utils.trivia import QuestionAnswer, QuestionList
+import os
 
 ballresponse = [
     'Yes', 'No', 'Take a wild guess...', 'Very doubtful',
@@ -10,7 +11,7 @@ i = 0
 answers = []
 questions = []
 
-
+## @story{9} The bot reads in a list of questions to choose from.
 with open ("trivia_questions_answers.txt") as fp:
     count = 0
     a_count = 0
@@ -25,7 +26,7 @@ with open ("trivia_questions_answers.txt") as fp:
             questions.append(line)
             q_count+=1
 
-## @story{9} The bot needs a list of questions to choose from.
+
 _all_questions = []
 for i in range(q_count):
      _all_questions.append(QuestionAnswer(questions[i], answers[i]))
@@ -33,3 +34,8 @@ for i in range(q_count):
 ## @story{9} The list of questions needs to be packed into the designed
 #  data structure.
 trivia_questions = QuestionList(_all_questions)
+
+#List for holding file names from meme directory
+all_memes = []
+for filename in os.listdir("memes"):
+    all_memes.append(filename)

@@ -48,6 +48,13 @@ class Fun_Commands(commands.Cog):
             bio = BytesIO(req)
             bio.seek(0)
             await ctx.send(content=content, file=discord.File(bio, filename=filename))
+    
+    @commands.command(aliases=['give_meme'])       
+    async def meme(self, ctx, arg1 = ""):    
+        """ Posts a random meme """
+        memeToUse = random.choice(lists.all_memes)
+        memePath = "memes/" + memeToUse
+        await ctx.send(file=discord.File(memePath))
 
     @commands.command()
     @commands.cooldown(rate=1, per=1.5, type=commands.BucketType.user)
@@ -311,6 +318,14 @@ class Fun_Commands(commands.Cog):
             "What kind of tree fits in your hand? \nA palm tree."
         ]
         await ctx.send(random.choice(allJokes))
+
+    ## @story{58} The bot returns a random xkcd comic between 1 and 2400
+    @commands.command(aliases=['comic'])
+    async def xkcdcomic(self, ctx):
+        """Returns a random xkcd comic"""
+
+        await ctx.send(f"https://xkcd.com/" + str(random.randint(1,2400)) + "/")
+
 
 def setup(bot):
     bot.add_cog(Fun_Commands(bot))
