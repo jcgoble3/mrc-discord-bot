@@ -68,9 +68,10 @@ async def test_xkcd(interface):
 @test()
 async def test_trivia(interface):
     await interface.assert_reply_contains("!trivia stop", "not in progress")
+    await interface.assert_reply_contains("!trivia status", "not in progress")
     await interface.assert_reply_contains("!trivia start", "Starting")
     await interface.assert_reply_contains("!trivia start", "already in progress")
-    await interface.assert_reply_contains("!trivia status", "Status")
+    await interface.assert_reply_contains("!trivia status", "game in progress")
     await interface.assert_reply_contains("!trivia answer wrongAnswer", "is incorrect")
     await interface.assert_reply_contains("!trivia answer testAnswer", "is correct")
     await interface.assert_reply_contains("!trivia stop", "Stopping")

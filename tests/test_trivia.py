@@ -56,18 +56,29 @@ def test_Trivia():
 
 def test_Trivia_start():
     trivia = Trivia()
-    assert trivia.start() == 0
+    assert trivia.start_game() == 0
 
-def test_Trivia_status():
+def test_Trivia_status_not_in_progress():
     trivia = Trivia()
-    assert trivia.status() == "Trivia Status!"
+    trivia.inProgress = False
+    assert trivia.get_game_status() == "Trivia game is not in progress"
 
-def test_Trivia_check():
+def test_Trivia_status_in_progress():
+    trivia = Trivia()
+    trivia.inProgress = True
+    assert trivia.get_game_status() == "Trivia game in progress"
+
+def test_Trivia_check_wrong():
     trivia = Trivia()
     trivia.qAsked = QuestionAnswer("test question", "test answer")
-    assert trivia.check("wrong answer") == -1
-    assert trivia.check("test answer") == 0
+    assert trivia.check_answer("wrong answer") == -1
+
+def test_Trivia_check_right():
+    trivia = Trivia()
+    trivia.qAsked = QuestionAnswer("test question", "test answer")
+    assert trivia.check_answer("test answer") == 0
 
 def test_Trivia_end():
     trivia = Trivia()
-    assert trivia.end() == 0
+    trivia.inProgress = True
+    assert trivia.end_game() == 0
