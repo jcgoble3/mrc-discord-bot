@@ -35,7 +35,7 @@ def load_trivia_questions(filename: str):
 trivia_questions = QuestionList(
     load_trivia_questions("trivia_questions_answers.txt"))
 
-#List for holding file names from meme directory
+# @story{6} The bot needs a collection of memes to choose from
 all_memes = []
 for filename in os.listdir("memes"):
     all_memes.append(filename)
