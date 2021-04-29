@@ -312,5 +312,14 @@ class Fun_Commands(commands.Cog):
         ]
         await ctx.send(random.choice(allJokes))
 
+    @commands.command(aliases=['guess'])
+    async def guess_the_game(self, ctx, player_guess: int):
+        computer_number = random.randint(1, 11)
+        if computer_number == player_guess:
+            await ctx.send("You guessed the correct number!")
+        else:
+            await ctx.send(f"That was wrong! The correct number is {computer_number}")
+
+
 def setup(bot):
     bot.add_cog(Fun_Commands(bot))
