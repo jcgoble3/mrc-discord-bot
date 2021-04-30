@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 import random
-import enum
 
 from typing import Iterable, List
 

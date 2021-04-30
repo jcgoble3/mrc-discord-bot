@@ -39,14 +39,15 @@ class Information(commands.Cog):
 
         # Test for empty input
         if (not (question and answer_option_1 and answer_option_2)):
-            await ctx.send(f"Cannot create poll:")
+            error = "Cannot create poll:"
             # Inform the user what is wrong with their use of the poll command
             if (not question):
-                await ctx.send(f"No question was supplied.")
+                error += " No question was supplied."
             if (not answer_option_1):
-                await ctx.send(f"Answer option #1 was not supplied.")
+                error += " Answer option #1 was not supplied."
             if (not answer_option_2):
-                await ctx.send(f"Answer option #2 was not supplied.")
+                error += " Answer option #2 was not supplied."
+            await ctx.send(error)
             return
 
         # Create the poll
@@ -120,8 +121,7 @@ class Information(commands.Cog):
     async def hello(self, ctx):
         """Greet the user and ask them how their day is."""
         # These lines send the greeting
-        await ctx.send(f"Hello: " + ctx.author.name + " my name is Test Bot!")
-        await ctx.send(f"How are you today?")
+        await ctx.send(f"Hello {ctx.author.name}, my name is Test Bot! How are you today?")
 
         # The purpose of the check function is to filter out messages so that only the
         # message the wait_for function is looking for is returned
