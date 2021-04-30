@@ -119,6 +119,14 @@ async def test_bad_poll(interface):
     await interface.assert_message_contains(message, "option #1")
     await interface.assert_message_contains(message, "option #2")
 
+## @story{12}
+@test()
+async def test_guessing_game(interface):
+    # Since the target number is a local variable, we can't reliably test
+    # both branches, so we just test one for now. "correct number" appears
+    # in both responses.
+    await interface.assert_reply_contains("!guess 8", "correct number")
+
 # Run the tests
 
 async def run_tests():
