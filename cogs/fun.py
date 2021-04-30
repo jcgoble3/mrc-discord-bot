@@ -327,6 +327,7 @@ class Fun_Commands(commands.Cog):
 
         await ctx.send(f"https://xkcd.com/" + str(random.randint(1,2400)) + "/")
 
+    ## @story{12}
     @commands.command(aliases=['guess'])
     async def guess_the_game(self, ctx, player_guess: int):
         """Guess a number between 1-10"""
