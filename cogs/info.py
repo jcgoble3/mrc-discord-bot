@@ -75,6 +75,7 @@ class Information(commands.Cog):
         if __debug__:
             assert len(poll.reactions) == 2, "A second reaction must be added to the message"
 
+    ## @story{9}
     @commands.command()
     async def trivia (self, ctx, arg1 = "", arg2 = ""):
         if __debug__:
